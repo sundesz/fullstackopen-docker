@@ -1,0 +1,62 @@
+Script started on 2022-04-14 22:36:35+03:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="150" LINES="24"]
+[?2004h]0;sandesh@sdz: ~/Documents/part12/part12-containers-applications/script-answers[01;32msandesh@sdz[00m:[01;34m~/Documents/part12/part12-containers-applications/script-answers[00m$ docker container ls
+[?2004lCONTAINER ID   IMAGE               COMMAND                  CREATED             STATUS             PORTS                                         NAMES
+cc9bac8ef319   hello-world-nginx   "/docker-entrypoint.…"   12 minutes ago      Up 12 minutes      0.0.0.0:8080->80/tcp, :::8080->80/tcp         trusting_moser
+899a8161639c   mongo               "docker-entrypoint.s…"   About an hour ago   Up About an hour   0.0.0.0:3456->27017/tcp, :::3456->27017/tcp   todo-backend_mongo_1
+[?2004h]0;sandesh@sdz: ~/Documents/part12/part12-containers-applications/script-answers[01;32msandesh@sdz[00m:[01;34m~/Documents/part12/part12-containers-applications/script-answers[00m$ docker exec -it todo-backend_mongo_1 bash
+[?2004l]0;root@899a8161639c: /root@899a8161639c:/# mongo -u root p -p admin
+MongoDB shell version v5.0.7
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("10dfceb6-a780-49f3-b8d3-1d67234ce827") }
+MongoDB server version: 5.0.7
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting: 
+        2022-04-14T18:34:29.615+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs[3G[Jshow dbs[11G
+admin         0.000GB
+config        0.000GB
+local         0.000GB
+the_database  0.000GB
+> user [3G[Juser[7G[3G[Juse[6G the_database[3G[Juse the_database[19G
+switched to db the_database
+> show collections[3G[Jshow collections[19G
+todos
+> db.todos.find({})[3G[Jdb.todos.find({})[20G
+{ "_id" : ObjectId("62586934a3375ec0d927c14e"), "text" : "Write code bitch", "done" : true }
+{ "_id" : ObjectId("62586934a3375ec0d927c14f"), "text" : "Learn about containers", "done" : false }
+> db.todos.insertOne({text:'testing mongl[3G[Jdb.todos.insertOne({text:'testing mong[41Go cli', '[3G[Jdb.todos.insertOne({text:'testing mongo cli', [49Gdone;[3G[Jdb.todos.insertOne({text:'testing mongo cli', done[53G: true})[3G[Jdb.todos.insertOne({text:'testing mongo cli', done: true})[61G
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("6258787d0843a4fe41f119de")
+}
+> db.todos.find({})[3G[Jdb.todos.find({})[20G
+{ "_id" : ObjectId("62586934a3375ec0d927c14e"), "text" : "Write code bitch", "done" : true }
+{ "_id" : ObjectId("62586934a3375ec0d927c14f"), "text" : "Learn about containers", "done" : false }
+{ "_id" : ObjectId("6258787d0843a4fe41f119de"), "text" : "testing mongo cli", "done" : true }
+> [3G[J[3G^C
+bye
+]0;root@899a8161639c: /root@899a8161639c:/# exit
+exit
+[?2004h]0;sandesh@sdz: ~/Documents/part12/part12-containers-applications/script-answers[01;32msandesh@sdz[00m:[01;34m~/Documents/part12/part12-containers-applications/script-answers[00m$ exit
+[?2004lexit
+
+Script done on 2022-04-14 22:40:25+03:00 [COMMAND_EXIT_CODE="0"]

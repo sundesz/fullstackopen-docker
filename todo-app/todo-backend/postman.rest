@@ -1,0 +1,29 @@
+PUT http://localhost:3000/todos/62586934a3375ec0d927c14e
+Content-Type: application/json
+
+{
+  "text": "Write code bitch"
+}
+
+
+################################
+GET http://localhost:3000/statistics/
+
+
+################################
+GET http://localhost:3000/todos
+
+
+################################
+GET http://localhost:3000/todos/62586934a3375ec0d927c14e
+
+
+
+################################
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+  "text": "Testing redis from cli",
+  "done": true
+}
